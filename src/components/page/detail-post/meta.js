@@ -1,8 +1,14 @@
 import ShareSocial from "@/components/meta/share";
+import FormatTime from "@/components/ui/formatTime";
 import { Stack, Typography } from "@mui/material";
 import { IconCalendarWeek } from "@tabler/icons-react";
 
-export default function DetailPostMeta() {
+export default function DetailPostMeta({
+    title,
+    time,
+    description,
+    url
+}) {
     return (
         <Stack
             my={3}
@@ -27,12 +33,16 @@ export default function DetailPostMeta() {
         >
             <Stack direction={"row"} gap={1} alignItems={"center"}>
                 <IconCalendarWeek size={14} color="#888" />
-                <Typography variant="body2">Ngày 01 tháng 07 năm 2024</Typography>
+                <FormatTime time={time} />
             </Stack>
 
             <Stack direction={"row"} gap={1} alignItems={"center"}>
                 <Typography variant="body2">Chia sẻ</Typography>
-                <ShareSocial />
+                <ShareSocial 
+                    url={url} 
+                    title={title} 
+                    description={description}
+                />
             </Stack>
         </Stack>
     )

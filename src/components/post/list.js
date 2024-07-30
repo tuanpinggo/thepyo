@@ -5,6 +5,7 @@ import MetaPost from "../meta/post";
 import { imageCdn } from "../ui/imaWithCdn";
 import Image from "next/image";
 import Link from "next/link";
+import { globalConfig } from "@/theme/config";
 
 export default function PostList({data}){
     return(
@@ -54,6 +55,7 @@ export default function PostList({data}){
                     title={data?.title}
                     description={data?.description}
                     thumbnail={imageCdn(data?.thumbnail?.data?.attributes?.url)}
+                    url={`${globalConfig.home_url}/${data?.slug}`}
                 />
             </Stack>
         </Stack>

@@ -276,6 +276,42 @@ a {
   bottom: 130px !important
 }
 
+.content h2{
+  color: var(--primary-color);
+  padding: 15px 0
+}
+.content p{
+  padding-bottom: 10px;
+}
+
+.content img{
+  max-width: 100%;
+  height: auto;
+}
+/* toc */
+.toc ul{
+  padding-left: 0;
+}
+.toc .heading2 span{
+  font-weight: 700;
+  font-size: 1rem;
+}
+.toc .heading3{
+  padding-left: 15px;
+}
+.toc .heading3 span{
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.toc .heading4{
+  padding-left: 16px;
+}
+
+.toc .heading4 span{
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
 @-webkit-keyframes shine {
 	100% {
 		left: 125%;

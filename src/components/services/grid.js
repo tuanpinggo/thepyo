@@ -5,35 +5,36 @@ import { IconArrowNarrowRight } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { imageCdn } from '../ui/imaWithCdn';
 
-export default function ServiceGrid() {
+export default function ServiceGrid({item}) {
 
     const router = useRouter()
 
     return (
         <Card className="card-service">
             <CardContent className="card-service-content">
-                <Link href="/dich-vu-tham-my/nien-rang-su">
+                <Link href={`/dich-vu-tham-my/${item?.slu}`}>
                     <Typography component={"h2"} variant='h2' color="#fff" gutterBottom>
-                        Stroke Rehabilitation
+                        {item?.title}
                     </Typography>
                 </Link>
                 <Typography color="#fff" variant='body2'>
-                    I enjoy getting to know my patients and building meaningful relationships. I understand that each person is unique and that they have diverse cultural backgrounds
+                    {item?.description}   
                 </Typography>
                 <Button 
                     variant='contained' 
                     className='btn' 
                     size='small'
                     startIcon={<IconArrowNarrowRight />}
-                    onClick={()=>router.push(`/dich-vu-tham-my/nien-rang-su`)}
+                    onClick={()=>router.push(`/dich-vu-tham-my/${item?.slu}`)}
                 >
                     Xem chi tiết
                 </Button>
             </CardContent>
             <Box className="thumbnail">
                 <Image
-                    src="/demothumb.jpg"
+                    src={imageCdn(item?.thumbnail?.data?.attributes?.url)}
                     alt='thumbnail service'
                     fill={true}
                 />

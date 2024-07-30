@@ -28,7 +28,11 @@ export default function MetaPost({
             <Box sx={{width: "1px", height: "13px", bgcolor: '#888'}} />
             <Stack direction={"row"} gap={1} alignItems={"center"}>
                 <Typography variant="body2">Chia sẻ</Typography>
-                <ShareSocial url={url} title={title} description={description}/>
+                <ShareSocial 
+                    url={url} 
+                    title={title} 
+                    description={description}
+                />
             </Stack>
         </Stack>
     )
