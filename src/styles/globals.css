@@ -329,6 +329,9 @@ a {
     -webkit-columns: 1;
     -moz-columns: 1;
   }
+  .mySwiper .swiper-pagination{
+    bottom: 10px !important
+  }
 }
 
 @media (prefers-color-scheme: dark) {
