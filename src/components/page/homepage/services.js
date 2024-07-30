@@ -22,6 +22,7 @@ export default function ServiceSection({data,services}) {
                                         <ServiceWidget 
                                             title={item?.attributes?.title}
                                             thumbnail={imageCdn(item?.attributes?.thumbnail?.data?.attributes?.url)}
+                                            url={`/dich-vu-tham-my/${item?.attributes?.slu}`}
                                         />
                                     </Grid>
                                 ))}

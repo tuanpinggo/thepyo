@@ -1,12 +1,14 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ServiceWidget({
     title = "Dịch vụ thẩm mỹ",
-    thumbnail = "/defaultThumbnail.jpg"
+    thumbnail = "/defaultThumbnail.jpg",
+    url="/"
 }){
     return(
-        <Box position={"relative"} className="service-widget">
+        <Box position={"relative"} className="service-widget" component={Link} href={url} display={"block"}>
             <Image
                 src={thumbnail}
                 fill
