@@ -1,9 +1,12 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import DefaultThumbnail from "./defaultThumbnail";
 import ThePyoChip from "../ui/chip";
 import MetaPost from "../meta/post";
+import { imageCdn } from "../ui/imaWithCdn";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function PostList(){
+export default function PostList({data}){
     return(
         <Stack 
             direction={{
@@ -13,16 +16,45 @@ export default function PostList(){
             gap={{xs: 2, lg: 5}} 
             alignItems={"center"}
         >
-            <DefaultThumbnail />
+            <Link href={`/${data?.slug}`}>
+                {data?.thumbnail?.data?.attributes?.url ? 
+                        <Box className="hover-img">
+                            <figure>
+                            <Image
+                                src={imageCdn(data?.thumbnail?.data?.attributes?.url)}
+                                width={300}
+                                height={200}
+                                alt={""}
+                                style={{
+                                    width: 300,
+                                    height: 200,
+                                    objectFit: "cover",
+                                    objectPosition: 'center',
+                                    borderRadius: 8
+                                }}
+                            />
+                            </figure>
+                        </Box>
+                    : 
+                    <DefaultThumbnail />
+                }
+            </Link>
             <Stack gap={2}>
                 <Stack>
                     <ThePyoChip label="Tin tức" />
                 </Stack>
-                <Typography variant="h2" component={"h2"}>
-                    Inclusive Marketing: Why and How Does it Work?
-                </Typography>
-                <Typography>Nunc aliquet scelerisque pellentesque imperdiet tortor elit, dictum. Tristique odio at dignissim viverra aliquet eleifend erat. Tellus, at arcu, egestas praesent.</Typography>
-                <MetaPost />
+                <Link href={`/${data?.slug}`}>
+                    <Typography variant="h2" component={"h2"}>
+                        {data?.title}
+                    </Typography>
+                </Link>
+                <Typography>{data?.description}</Typography>
+                <MetaPost 
+                    time={data?.createdAt}
+                    title={data?.title}
+                    description={data?.description}
+                    thumbnail={imageCdn(data?.thumbnail?.data?.attributes?.url)}
+                />
             </Stack>
         </Stack>
     )

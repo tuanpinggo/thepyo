@@ -6,7 +6,7 @@ import { globalConfig } from "@/theme/config";
 import { Box, Container, Divider, Stack } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function TinTucPage({config}){
+export default function TinTucPage({config,data}){
     return(
         <MainLayout config={config}>
             <PyoBreakCrumbs 
@@ -17,9 +17,9 @@ export default function TinTucPage({config}){
                     <Grid container spacing={3}>
                         <Grid xs={12} md={9}>
                             <Stack gap={3} divider={<Divider light />}>
-                                <PostList />
-                                <PostList />
-                                <PostList />
+                                {data?.map(item =>
+                                    <PostList key={item.id} data={item?.attributes}/>
+                                )}
                             </Stack>
                         </Grid>
                         <Grid xs={12} md={3}>
@@ -34,16 +34,20 @@ export default function TinTucPage({config}){
 
 export async function getStaticProps() {
     const url1 = `${globalConfig.api_url}/config?populate=*`
+    const url2 = `${globalConfig.api_url}/posts?populate=*&?filters[categories][operator]=1`
     
     const getConfig = await fetch(url1)
+    const getData = await fetch(url2)
   
     const configResponse = await getConfig.json()
+    const dataResponse = await getData.json()
   
     const config = configResponse?.data?.attributes
    
     return {
       props: {
-        config
+        config,
+        data: dataResponse?.data
       },
       revalidate: globalConfig.revalidateTime,
     }

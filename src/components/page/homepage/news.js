@@ -15,7 +15,6 @@ import NewsWidget from "@/components/news/widgets";
 import { imageCdn } from "@/components/ui/imaWithCdn";
 
 export default function News({datas}) {
-    console.log("🚀 ~ News ~ datas:", datas)
     const mobile = useMediaQuery('(max-width:720px)');
     return (
         <Box py={8} bgcolor={"#F2F2F2"}>

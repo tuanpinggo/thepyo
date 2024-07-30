@@ -8,13 +8,17 @@ import {
     EmailShareButton
 } from 'next-share'
 
-export default function ShareSocial(){
+export default function ShareSocial({
+    url = "/",
+    title = "",
+    description = ""
+}){
     return(
         <>
             
             <FacebookShareButton
-                url={'https://github.com/next-share'}
-                quote={'next-share is a social share buttons for your next React apps.'}
+                url={url}
+                quote={title}
                 hashtag={'#nextshare'}
             >
                 <Tooltip title="Chia sẻ bài viết trên facebook">
@@ -23,30 +27,30 @@ export default function ShareSocial(){
             </FacebookShareButton>
 
             <TwitterShareButton
-                url={'https://github.com/next-share'}
-                title={'next-share is a social share buttons for your next React apps.'}
+                url={url}
+                title={title}
             >
                 <Tooltip title="Chia sẻ bài viết trên Twitter"><IconBrandTwitter size={18} color="#666"/></Tooltip>
             </TwitterShareButton>
 
             <TelegramShareButton
-                url={'https://github.com/next-share'}
-                title={'next-share is a social share buttons for your next React apps.'}              
+                url={url}
+                title={title}              
             >
                 <Tooltip title="Chia sẻ bài viết trên Telegram"><IconBrandTelegram size={18} color="#666"/></Tooltip>
             </TelegramShareButton>
 
             <WhatsappShareButton
-                url={'https://github.com/next-share'}
-                title={'next-share is a social share buttons for your next React apps.'}
+                url={url}
+                title={title}
                 separator=":: "
             >
                 <Tooltip title="Chia sẻ bài viết trên Whatsapp"><IconBrandWhatsapp size={18} color="#666"/></Tooltip>
             </WhatsappShareButton>
 
             <EmailShareButton
-                url={'https://github.com/next-share'}
-                subject={'Next Share'}
+                url={url}
+                subject={description}
                 body="body"
             >
                 <Tooltip title="Gửi email bài viết cho bạn bè"><IconMail size={18} color="#666"/></Tooltip>

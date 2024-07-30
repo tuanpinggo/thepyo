@@ -4,7 +4,8 @@ import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
-import { IconBrandFacebook, IconBrandLinkedin, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
+import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function ContactUs({config}) {
     return (
@@ -24,31 +25,39 @@ export default function ContactUs({config}) {
                                     LIÊN HỆ VỚI CHÚNG TÔI
                                 </Typography>
                                 <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    {config?.description_contact}
                                 </Typography>
 
                                 <Stack spacing={1}>
                                     <Typography>
-                                        <strong>Địa chỉ :</strong> 75 Phạm Viết Chánh, Ho Chi Minh City, Vietnam
+                                        <strong>Địa chỉ :</strong> {config?.address}
                                     </Typography>
                                     <Typography>
-                                        <strong>Hotline :</strong> 0988 847 958
+                                        <strong>Hotline :</strong> {config?.hotline}
                                     </Typography>
                                     <Typography>
-                                        <strong>Email : </strong> thepyovietnam@gmail.com
+                                        <strong>Email : </strong> {config?.email}
                                     </Typography>
                                     <Typography>
-                                        <strong>Website : </strong>  www.thepyo.vn
+                                        <strong>Website : </strong>  {config?.website}
                                     </Typography>
                                 </Stack>
                                 <Stack direction={"row"} alignItems={"center"} spacing={2}>
                                     <Typography>
                                         <strong>Social : </strong>
                                     </Typography>
-                                    <IconBrandFacebook />
-                                    <IconBrandTwitter />
-                                    <IconBrandYoutube />
-                                    <IconBrandLinkedin />
+                                    <Link href={config?.facebook}>
+                                        <IconBrandFacebook />
+                                    </Link>
+                                    <Link href={config?.twitter}>
+                                        <IconBrandTwitter />
+                                    </Link>
+                                    <Link href={config?.youtube}>
+                                        <IconBrandYoutube />
+                                    </Link>
+                                    <Link href={config?.instagram}>
+                                        <IconBrandInstagram />
+                                    </Link>
                                 </Stack>
                             </Stack>
                         </Grid>
@@ -62,7 +71,6 @@ export default function ContactUs({config}) {
                         height="450" 
                         allowfullscreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
                         style={{border: "none"}}
                     />
                 </Box>
