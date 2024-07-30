@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function WidgetService({datas}){
-    console.log("🚀 ~ WidgetService ~ datas:", datas)
     return(
         <Box className="widget-service" height={"100%"}>
             <Stack direction={"row"} alignItems={"center"} spacing={2} mb={3}>

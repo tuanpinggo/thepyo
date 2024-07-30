@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography, useMediaQuery } from "@mui/material";
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,6 +18,9 @@ import FormHomepage from "@/components/form/formHomepage";
 import { imageCdn } from "@/components/ui/imaWithCdn";
 
 export default function SlideSection({slides}){
+
+    const matches = useMediaQuery('(min-width:1650px)');
+
     return(
         <Box position={"relative"} minHeight={900}>
             <Swiper 
@@ -48,8 +51,12 @@ export default function SlideSection({slides}){
                                     }}
                                 />
                             </Box>
-                            <Container maxWidth={globalConfig.maxWidth}>
-                                <Stack spacing={2} position={"relative"} zIndex={2} maxWidth={900} justifyContent={"flex-start"}>
+                            <Container 
+                                maxWidth={
+                                    matches ? globalConfig.maxWidth : "lg"
+                                }
+                            >
+                                <Stack spacing={2} position={"relative"} zIndex={2} maxWidth={ matches ? 900: 700} justifyContent={"flex-start"}>
                                     <Typography variant="body" fontSize={16} fontWeight={200} letterSpacing={"3px"}>
                                         {item?.attributes?.sub_title || ""}
                                     </Typography>
