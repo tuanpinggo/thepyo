@@ -11,9 +11,9 @@ import Image from "next/image";
 import MechanismService from "./mechanism";
 import WorkingProcessService from "@/components/page/detail-service/workingProcess";
 import WidgetService from "@/components/page/detail-service/widget";
+import FormHomepage from "@/components/form/formHomepage";
 
 export default function ServicePage({posts,config, allService}) {
-    console.log("🚀 ~ ServicePage ~ allService:", allService)
     
     const data = posts?.data?.[0]?.attributes
 
@@ -51,6 +51,9 @@ export default function ServicePage({posts,config, allService}) {
                             <WidgetService datas={allService}/>
                         </Grid>
                     </Grid>
+                    <Box bgcolor={"primary.main"} borderRadius={2} p={2} mt={4}>
+                        <FormHomepage />
+                    </Box>
                 </Container>
             </Box>
         </MainLayout>

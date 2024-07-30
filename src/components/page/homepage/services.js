@@ -1,4 +1,5 @@
 import ServiceWidget from "@/components/services/widget";
+import { imageCdn } from "@/components/ui/imaWithCdn";
 import DefaultTitleSection from "@/components/ui/title";
 import { globalConfig } from "@/theme/config";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
@@ -7,7 +8,7 @@ import { IconArrowNarrowRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ServiceSection({data}) {
+export default function ServiceSection({data,services}) {
     return (
         <Box component={"section"} py={5} bgcolor={"#f6f6f6"}>
             <Container maxWidth={globalConfig.maxWidth}>
@@ -16,9 +17,12 @@ export default function ServiceSection({data}) {
                     <Grid xs={12} lg={6} order={{xs: 2,lg:1}}>
                         <Box width={"100%"}>
                             <Grid container spacing={{ xs: 2, md: 3 }}>
-                                {Array.from(Array(4)).map((_, index) => (
+                                {services.map((item, index) => (
                                     <Grid xs={12} sm={12} md={6} key={index}>
-                                        <ServiceWidget />
+                                        <ServiceWidget 
+                                            title={item?.attributes?.title}
+                                            thumbnail={imageCdn(item?.attributes?.thumbnail?.data?.attributes?.url)}
+                                        />
                                     </Grid>
                                 ))}
                             </Grid>

@@ -11,6 +11,9 @@ export default function ServiceWidget({
                 src={thumbnail}
                 fill
                 alt={title}
+                style={{
+                    borderRadius: 5
+                }}
             />
             <Stack className="service-tag" justifyContent={"center"} alignItems={"center"}>
                 <Stack px={3} py={1} bgcolor={"#fff"} borderRadius={1}>
