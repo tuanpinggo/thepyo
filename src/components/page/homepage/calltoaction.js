@@ -36,7 +36,7 @@ export default function CallToAction({data}) {
                             </Stack>
                         </Grid>
                         <Grid xs={12} lg={6} sx={{ py: 0 }}>
-                            <Box sx={{ width: "100%", height: 400 }} className="hover-img">
+                            <Box sx={{ width: "100%", height: {xs: "auto", lg: 400} }} className="hover-img">
                                 <figure>
                                     <Image
                                         src={imageCdn(data?.call_to_action_thumbnail?.data?.attributes?.url)}
@@ -58,7 +58,7 @@ export default function CallToAction({data}) {
                     <Box sx={{ position: 'absolute', bottom: '-80px', left: '-50px' }}>
                         <Pattern />
                     </Box>
-                    <Box sx={{ position: 'absolute', top: '-80px', right: 'calc(100vw/3 - 60px)' }}>
+                    <Box sx={{ position: 'absolute', top: '-80px', right: 'calc(100vw/3 - 60px)' }} display={{xs: "none", lg: "block"}}>
                         <Pattern />
                     </Box>
                 </Box>
