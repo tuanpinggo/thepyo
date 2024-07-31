@@ -9,10 +9,10 @@ import theme from "@/theme/default";
 
 export default function Header({data}){
     
-    const matches = useMediaQuery('(min-width:1180px)');
+    const matches = useMediaQuery('(max-width:1180px)');
 
     return(
-        <Box className="header" component={"header"} bgcolor={matches ? "#fff" : "primary.main"}>
+        <Box className="header" component={"header"} bgcolor={matches ? "primary.main" : "#fff"}>
             <Container maxWidth={globalConfig.maxWidth}>
                 <Stack 
                     direction={"row"} 
@@ -24,7 +24,7 @@ export default function Header({data}){
                 >
                     <Link href="/">
                         <Logo 
-                            color={matches ? theme.palette.primary.main : "#fff"}
+                            color={matches ? "#fff" : theme.palette.primary.main}
                         />
                     </Link>
                     <MainNav data={data}/>

@@ -55,6 +55,7 @@ export default function SlideSection({slides}){
                                         objectFit:'cover',
                                         objectPosition: 'center'
                                     }}
+                                    priority
                                 />
                             </Box>
                             <Container 
