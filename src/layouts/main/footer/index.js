@@ -4,37 +4,41 @@ import { Box, Container, Divider, Stack } from "@mui/material";
 import FooterWidget from "./widget";
 import CopyRight from "./copyright";
 import Image from "next/image";
+import ButtonScroll from "./buttonScroll";
 
 export default function Footer({data}){
     return(
-        <Box py={5} position={"relative"} bgcolor={"primary.main"} sx={{borderTop: '8px solid #103064'}} overflow={"hidden"}>
-            <Container maxWidth={globalConfig.maxWidth}>
-                <Stack gap={6}>
-                    <Logo color="#fff" />
-                    <FooterWidget data={data}/>
-                    <Stack gap={3}>
-                        <Divider sx={{bgcolor: '#ccc'}} />
-                        <CopyRight data={data}/>
+        <>
+            <Box py={5} position={"relative"} bgcolor={"primary.main"} sx={{borderTop: '8px solid #103064'}} overflow={"hidden"}>
+                <Container maxWidth={globalConfig.maxWidth}>
+                    <Stack gap={6}>
+                        <Logo color="#fff" />
+                        <FooterWidget data={data}/>
+                        <Stack gap={3}>
+                            <Divider sx={{bgcolor: '#ccc'}} />
+                            <CopyRight data={data}/>
+                        </Stack>
                     </Stack>
-                </Stack>
-            </Container>
-            <Box sx={styles.patternLeft}>
-                <Image
-                    src={'/pattern-light.svg'}
-                    width={320}
-                    height={323}
-                    alt="The Pyo Pattern"
-                />
+                </Container>
+                <Box sx={styles.patternLeft}>
+                    <Image
+                        src={'/pattern-light.svg'}
+                        width={320}
+                        height={323}
+                        alt="The Pyo Pattern"
+                    />
+                </Box>
+                <Box sx={styles.patternRight}>
+                    <Image
+                        src={'/pattern-light.svg'}
+                        width={320}
+                        height={323}
+                        alt="The Pyo Pattern"
+                    />
+                </Box>
             </Box>
-            <Box sx={styles.patternRight}>
-                <Image
-                    src={'/pattern-light.svg'}
-                    width={320}
-                    height={323}
-                    alt="The Pyo Pattern"
-                />
-            </Box>
-        </Box>
+            <ButtonScroll data={data}/>
+        </>
     )
 }
 
