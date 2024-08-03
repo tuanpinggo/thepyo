@@ -7,7 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { globalConfig } from "@/theme/config";
 
-export default function PostList({data}){
+export default function PostList({
+    data,
+    label = "Tin tức"
+}){
     return(
         <Stack 
             direction={{
@@ -42,7 +45,7 @@ export default function PostList({data}){
             </Link>
             <Stack gap={2}>
                 <Stack>
-                    <ThePyoChip label="Tin tức" />
+                    <ThePyoChip label={label} />
                 </Stack>
                 <Link href={`/${data?.slug}`}>
                     <Typography variant="h2" component={"h2"}>

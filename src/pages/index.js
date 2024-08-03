@@ -6,12 +6,17 @@ import ServiceSection from "@/components/page/homepage/services";
 import SlideSection from "@/components/page/homepage/slides";
 import OurTeam from "@/components/page/homepage/team";
 import WhyChooseUs from "@/components/page/homepage/whyChooseUs";
+import DefaultSeo from "@/components/seo/init";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 
 export default function Home({homePageData,config,slides,posts,services}) {
   return (
     <MainLayout config={config}>
+      <DefaultSeo
+        title={homePageData?.attributes?.seo?.title}
+        description={homePageData?.attributes?.seo?.description}
+      />
       <SlideSection slides={slides}/>
       <AboutUsSection data={homePageData?.attributes}/>
       <ServiceSection data={homePageData?.attributes} services={services}/>

@@ -1,13 +1,18 @@
+import DefaultSeo from "@/components/seo/init";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
 export default function PricingPage({config,data}){
 
-    const {title,content,description} = data?.attributes
+    const {title,content,description,seo} = data?.attributes
 
     return(
         <MainLayout config={config}>
+            <DefaultSeo
+                title={seo.title}
+                description={seo.description}
+            />
             <Box component={"main"} py={{xs: 3, lg: 8}}>
                 <Container maxWidth={"md"}>
                     <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>

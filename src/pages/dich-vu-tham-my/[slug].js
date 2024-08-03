@@ -12,13 +12,19 @@ import MechanismService from "./mechanism";
 import WorkingProcessService from "@/components/page/detail-service/workingProcess";
 import WidgetService from "@/components/page/detail-service/widget";
 import FormHomepage from "@/components/form/formHomepage";
+import DefaultSeo from "@/components/seo/init";
 
-export default function ServicePage({posts,config, allService}) {
-    
+export default function ServicePage({ posts, config, allService }) {
+
     const data = posts?.data?.[0]?.attributes
 
     return (
         <MainLayout config={config}>
+
+            <DefaultSeo
+                title={data?.seo?.title || data?.title}
+                description={data?.seo?.description || data?.description}
+            />
 
             <PyoBreakCrumbs
                 categories={[{ name: 'Dịch vụ thẩm mỹ', slug: "/dich-vu-tham-my" }]}
@@ -33,22 +39,22 @@ export default function ServicePage({posts,config, allService}) {
                                 {data?.title}
                             </Typography>
 
-                            <DetailPostMeta 
+                            <DetailPostMeta
                                 title={data?.title}
                                 time={data?.createdAt}
                                 description={data?.description}
                                 url={`${globalConfig.home_url}/${data?.slug}`}
                             />
 
-                            <WhatService data={data}/>
-                            <AdvantageService data={data}/>
-                            <MechanismService data={data}/>
-                            <WorkingProcessService data={data}/>
-                            <Faq data={data}/>
+                            <WhatService data={data} />
+                            <AdvantageService data={data} />
+                            <MechanismService data={data} />
+                            <WorkingProcessService data={data} />
+                            <Faq data={data} />
 
                         </Grid>
                         <Grid xs={12} md={3}>
-                            <WidgetService datas={allService}/>
+                            <WidgetService datas={allService} />
                         </Grid>
                     </Grid>
                     <Box bgcolor={"primary.main"} borderRadius={2} p={2} mt={4}>
@@ -68,34 +74,34 @@ export async function getStaticProps({ params }) {
     const posts = await res.json()
 
     const url1 = `${globalConfig.api_url}/config?populate=*`
-    
+
     const getConfig = await fetch(url1)
 
     const configResponse = await getConfig.json()
 
     const res3 = await fetch(`${globalConfig.api_url}/services?populate=*`)
     const allService = await res3.json()
-   
+
     return {
-      props: {
-        posts,
-        config: configResponse?.data?.attributes,
-        allService: allService?.data
-      },
-      revalidate: globalConfig.revalidateTime, // In seconds
+        props: {
+            posts,
+            config: configResponse?.data?.attributes,
+            allService: allService?.data
+        },
+        revalidate: globalConfig.revalidateTime, // In seconds
     }
 }
 
 export async function getStaticPaths() {
     const res = await fetch(`${globalConfig.api_url}/services`)
     const posts = await res.json()
-   
+
     // Get the paths we want to pre-render based on posts
     const paths = posts?.data?.map((post) => ({
-        params: { 
+        params: {
             slug: `${post.attributes.slug}`,
         },
     }))
-   
+
     return { paths, fallback: 'blocking' }
 }

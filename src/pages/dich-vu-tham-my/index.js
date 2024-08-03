@@ -1,4 +1,5 @@
 import PyoBreakCrumbs from "@/components/breakcrumbs/default";
+import DefaultSeo from "@/components/seo/init";
 import ServiceGrid from "@/components/services/grid";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
@@ -9,6 +10,10 @@ export default function ServicePage({config,data}){
     return(
         <MainLayout config={config}>
             <PyoBreakCrumbs
+                title="Dịch vụ thẩm mỹ"
+            />
+
+            <DefaultSeo
                 title="Dịch vụ thẩm mỹ"
             />
 

@@ -3,5 +3,6 @@ export const globalConfig = {
     api_url: 'https://thepyoadmin.jgoteam.com/api',
     revalidateTime: 1000 * 30,
     cdn_url: 'https://thepyoadmin.jgoteam.com',
-    home_url: 'https://thepyo.jgoteam.com'
+    home_url: 'https://thepyo.jgoteam.com',
+    site_name: 'Viện thẩm mỹ The Pyo'
 }

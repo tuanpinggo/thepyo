@@ -1,8 +1,6 @@
-
 import { globalConfig } from "@/theme/config";
 import { Box, Breadcrumbs, Container, Stack, Typography, useMediaQuery } from "@mui/material";
 import { IconHome2 } from "@tabler/icons-react";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,9 +16,6 @@ export default function PyoBreakCrumbs({
 
     return (
         <>
-            <Head>
-                <title>{title}</title>
-            </Head>
             <Box
                 bgcolor={{
                     xs: "secondary.main",

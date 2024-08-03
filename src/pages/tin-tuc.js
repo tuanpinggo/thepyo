@@ -1,6 +1,7 @@
 import PyoBreakCrumbs from "@/components/breakcrumbs/default";
 import PostList from "@/components/post/list";
 import Widget from "@/components/post/widgets";
+import DefaultSeo from "@/components/seo/init";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Divider, Stack } from "@mui/material";
@@ -9,6 +10,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 export default function TinTucPage({config,data, categories, tags}){
     return(
         <MainLayout config={config}>
+            <DefaultSeo
+                title="Tin tức Mới từ The Pyo"
+                description="The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm. Với đội ngũ chuyên gia hàng đầu và công nghệ hiện đại, The Pyo cam kết mang lại vẻ đẹp hoàn hảo"
+            />
             <PyoBreakCrumbs 
                 title="Tin tức"
             />
@@ -34,7 +39,7 @@ export default function TinTucPage({config,data, categories, tags}){
 
 export async function getStaticProps() {
     const url1 = `${globalConfig.api_url}/config?populate=*`
-    const url2 = `${globalConfig.api_url}/posts?populate=*&?filters[categories][operator]=1`
+    const url2 = `${globalConfig.api_url}/posts?populate=*&filters[categories][$eq]=1`
     const url3 = `${globalConfig.api_url}/categories?populate=*`
     const url4 = `${globalConfig.api_url}/tags?populate=*`
     

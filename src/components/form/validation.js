@@ -11,6 +11,11 @@ const formContactValidation = yup.object({
         .required('Bạn chưa nhập số điện thoại'),
 })
 
+const searchFormValidation = yup.object({
+    keyword: yup.string().required('Bạn chưa nhập từ khoá'),
+})
+
 export {
-    formContactValidation
+    formContactValidation,
+    searchFormValidation
 }

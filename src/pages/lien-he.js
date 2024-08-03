@@ -1,5 +1,6 @@
 import PyoBreakCrumbs from "@/components/breakcrumbs/default";
 import FormContract from "@/components/form/default";
+import DefaultSeo from "@/components/seo/init";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
@@ -10,6 +11,10 @@ import Link from "next/link";
 export default function ContactUs({config}) {
     return (
         <MainLayout config={config}>
+            <DefaultSeo
+                title="Liên hệ The Pyo"
+                description="The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm. Với đội ngũ chuyên gia hàng đầu và công nghệ hiện đại, The Pyo cam kết mang lại vẻ đẹp hoàn hảo"
+            />
             <PyoBreakCrumbs
                 title="Liên hệ"
             />
@@ -69,7 +74,6 @@ export default function ContactUs({config}) {
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.38281832222!2d106.6822571!3d10.7656094!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f004207347d%3A0x24ccc872eae5bd9a!2sThe%20Pyo%20%7C%20Center%20clinic!5e0!3m2!1svi!2s!4v1722264650289!5m2!1svi!2s" 
                         width="100%" 
                         height="450" 
-                        allowfullscreen="" 
                         loading="lazy" 
                         style={{border: "none"}}
                     />

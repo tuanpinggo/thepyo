@@ -2,6 +2,7 @@ import PyoBreakCrumbs from "@/components/breakcrumbs/default";
 import DetailPostMeta from "@/components/page/detail-post/meta";
 import TOC from "@/components/page/detail-post/toc";
 import Widget from "@/components/post/widgets";
+import DefaultSeo from "@/components/seo/init";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
@@ -13,6 +14,10 @@ export default function DetailPost({posts,categories,tags,config}){
 
     return(
         <MainLayout config={config}>
+            <DefaultSeo 
+                title={data?.seo?.title || data?.title}
+                description={data?.seo?.description || data?.description}
+            />
             <PyoBreakCrumbs 
                 categories={[{name: 'Tin tức - Khuyến mại', slug: 'tin-tuc-khuyen-mai'}]}
                 title={data?.title}
@@ -55,7 +60,7 @@ export async function getStaticProps({ params }) {
 
     const slug = params?.slug
 
-    const res = await fetch(`${globalConfig.api_url}/posts?filters[slug][$eq]=${slug}`)
+    const res = await fetch(`${globalConfig.api_url}/posts?filters[slug][$eq]=${slug}&populate=*`)
     const posts = await res.json()
 
     const url1 = `${globalConfig.api_url}/config?populate=*`

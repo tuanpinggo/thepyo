@@ -9,8 +9,8 @@ export default function MyDocument(props) {
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
-        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
+        <link rel="icon" type="image/png" href="./favicon.png" />
         <DocumentHeadTags {...props} />
       </Head>
       <body>
