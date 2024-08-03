@@ -1,4 +1,4 @@
-import { Button, DialogContent, Typography } from "@mui/material";
+import { Box, Button, DialogContent, Typography } from "@mui/material";
 import { IconCalendarClock } from "@tabler/icons-react";
 import theme from "@/theme/default";
 import Dialog from '@mui/material/Dialog';
@@ -10,7 +10,7 @@ export default function ButtonCallToActionMobile(){
     const [open,setOpen] = useState(false)
 
     return(
-        <>
+        <Box display={{xs: 'block', lg: 'none'}}>
             <Button 
                 variant="contained" 
                 fullWidth 
@@ -30,6 +30,6 @@ export default function ButtonCallToActionMobile(){
                     <FormHomepage />
                 </DialogContent>
             </Dialog>
-        </>
+        </Box>
     )
 }
