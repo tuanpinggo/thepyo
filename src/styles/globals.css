@@ -320,6 +320,21 @@ a {
   font-size: 0.85rem;
 }
 
+.doctor-content h2,
+.doctor-content h3,
+.doctor-content h4,
+.doctor-content h5{
+  padding: 12px 0;
+}
+
+.doctor-content p{
+  padding-bottom: 8px;
+}
+
+.doctor-content ul{
+  padding-left: 15px;
+}
+
 @-webkit-keyframes shine {
 	100% {
 		left: 125%;

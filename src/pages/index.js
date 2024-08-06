@@ -32,7 +32,7 @@ export default function Home({homePageData,config,slides,posts,services}) {
 export async function getStaticProps() {
   const url1 = `${globalConfig.api_url}/config?populate=*`
   const url2 = `${globalConfig.api_url}/slides?populate=*`
-  const url3 = `${globalConfig.api_url}/home-page?populate=*`
+  const url3 = `${globalConfig.api_url}/home-page?populate[0]=call_to_action_thumbnail&populate[1]=about_gallary&populate[2]=why_choose_us&populate[3]=seo&populate[4]=bac_sies&populate[bac_sies][populate]=*&populate[about_gallary][populate]=*`
   const url4 = `${globalConfig.api_url}/posts?populate=*&?filters[categories][operator]=1`
 
   const url5 = `${globalConfig.api_url}/services?populate=*&pagination[page]=1&pagination[pageSize]=4`

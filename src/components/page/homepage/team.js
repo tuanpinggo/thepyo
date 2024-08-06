@@ -1,4 +1,5 @@
 import OurTeamWidget from "@/components/teams/widget";
+import { imageCdn } from "@/components/ui/imaWithCdn";
 import DefaultTitleSection from "@/components/ui/title";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
@@ -7,6 +8,7 @@ import { IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
 export default function OurTeam({data}) {
+    const basy = data?.bac_sies?.data
     return (
         <Box py={{ xs: 3, lg: 8 }}>
             <Container maxWidth={globalConfig.maxWidth}>
@@ -27,18 +29,17 @@ export default function OurTeam({data}) {
                     </Box>
                 </Stack>
                 <Grid container spacing={2} sx={{ mt: 3 }}>
-                    <Grid xs={12} lg={3}>
-                        <OurTeamWidget />
-                    </Grid>
-                    <Grid xs={12} lg={3}>
-                        <OurTeamWidget />
-                    </Grid>
-                    <Grid xs={12} lg={3}>
-                        <OurTeamWidget />
-                    </Grid>
-                    <Grid xs={12} lg={3}>
-                        <OurTeamWidget />
-                    </Grid>
+
+                    {basy?.map(item =>
+                        <Grid xs={12} lg={3} key={item.id}>
+                            <OurTeamWidget 
+                                title={item?.attributes?.title}
+                                description={item?.attributes?.description}
+                                thumbnail={imageCdn(item?.attributes?.thumbnail?.data?.attributes?.url)}
+                                link={`/doi-ngu/${item?.attributes?.slug}`}
+                            />
+                        </Grid>
+                    )}
                 </Grid>
             </Container>
         </Box>
