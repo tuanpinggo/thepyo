@@ -7,7 +7,7 @@ import SearchBox from "./search";
 import HeaderMobile from "./mobile";
 import theme from "@/theme/default";
 
-export default function Header({data}){
+export default function Header({navbar}){
     
     const matches = useMediaQuery('(max-width:1180px)');
 
@@ -27,10 +27,10 @@ export default function Header({data}){
                             color={matches ? "#fff" : theme.palette.primary.main}
                         />
                     </Link>
-                    <MainNav data={data}/>
+                    <MainNav data={navbar?.data}/>
                     <SearchBox />
 
-                    <HeaderMobile data={data}/>
+                    <HeaderMobile data={navbar?.data}/>
 
                 </Stack>
 

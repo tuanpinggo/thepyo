@@ -5,21 +5,20 @@ import Faq from "@/components/page/detail-service/faq";
 import WhatService from "@/components/page/detail-service/whatservice";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
-import Image from "next/image";
-import MechanismService from "./mechanism";
+import MechanismService from "../../components/page/detail-service/mechanism";
 import WorkingProcessService from "@/components/page/detail-service/workingProcess";
 import WidgetService from "@/components/page/detail-service/widget";
 import FormHomepage from "@/components/form/formHomepage";
 import DefaultSeo from "@/components/seo/init";
 
-export default function ServicePage({ posts, config, allService }) {
+export default function ServicePage({ posts, config, allService, navbar }) {
 
     const data = posts?.data?.[0]?.attributes
 
     return (
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
 
             <DefaultSeo
                 title={data?.seo?.title || data?.title}
@@ -82,11 +81,16 @@ export async function getStaticProps({ params }) {
     const res3 = await fetch(`${globalConfig.api_url}/services?populate=*`)
     const allService = await res3.json()
 
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
+
     return {
         props: {
             posts,
             config: configResponse?.data?.attributes,
-            allService: allService?.data
+            allService: allService?.data,
+            navbar: navbarResponse?.data?.attributes?.items
         },
         revalidate: globalConfig.revalidateTime, // In seconds
     }

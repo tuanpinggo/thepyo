@@ -1,8 +1,8 @@
 export const globalConfig = {
     maxWidth: 'xl',
-    api_url: 'https://thepyoadmin.jgoteam.com/api',
+    api_url: 'https://admin.thepyo.vn/api',
     revalidateTime: 1000 * 30,
-    cdn_url: 'https://thepyoadmin.jgoteam.com',
-    home_url: 'https://thepyo.jgoteam.com',
+    cdn_url: 'https://admin.thepyo.vn',
+    home_url: 'https://thepyo.vn',
     site_name: 'Viện thẩm mỹ The Pyo'
 }

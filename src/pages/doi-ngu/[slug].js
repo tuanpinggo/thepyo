@@ -10,12 +10,12 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from "next/image";
 
-export default function DoctorDetail({posts,config,allDoctor}){
+export default function DoctorDetail({posts,config,allDoctor,navbar}){
 
     const data = posts?.data?.[0]?.attributes
 
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title={data?.seo?.title || data?.title}
                 description={data?.seo?.description || data?.description}
@@ -91,11 +91,16 @@ export async function getStaticProps({ params }) {
     const res3 = await fetch(`${globalConfig.api_url}/doctors?populate=*`)
     const allDoctor = await res3.json()
 
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
+
     return {
         props: {
             posts,
             config: configResponse?.data?.attributes,
-            allDoctor: allDoctor?.data
+            allDoctor: allDoctor?.data,
+            navbar: navbarResponse?.data?.attributes?.items
         },
         revalidate: globalConfig.revalidateTime, // In seconds
     }

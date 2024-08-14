@@ -4,12 +4,12 @@ import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
-export default function AboutUsPage({config,data}){
+export default function AboutUsPage({config,data,navbar}){
 
     const {title,content,sapo,seo} = data?.attributes
 
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title={seo?.title}
                 description={seo?.description}
@@ -44,11 +44,16 @@ export async function getStaticProps() {
     const dataResponse = await getData.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         config,
-        data: dataResponse?.data
+        data: dataResponse?.data,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }

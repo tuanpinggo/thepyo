@@ -7,9 +7,9 @@ import { globalConfig } from "@/theme/config"
 import { Box, Container } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2";
 
-export default function DoctorList({config,doctors}){
+export default function DoctorList({config,doctors, navbar}){
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <PyoBreakCrumbs
                 title="Đội ngũ bác sỹ"
             />
@@ -50,11 +50,16 @@ export async function getStaticProps() {
     const doctorRespinse = await getDoctor.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         config,
-        doctors : doctorRespinse
+        doctors : doctorRespinse,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }

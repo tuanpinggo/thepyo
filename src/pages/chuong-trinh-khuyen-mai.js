@@ -8,9 +8,9 @@ import { globalConfig } from "@/theme/config";
 import { Box, Container, Divider, Stack } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function KhuyenMaiPage({ config, data, categories, tags }) {
+export default function KhuyenMaiPage({ config, data, categories, tags, navbar }) {
     return (
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title="Chương trình khuyến mại - The Pyo"
                 description="Đừng để sự tự ti về nhan sắc trở thành rào cản thành công. Tại The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm."
@@ -59,12 +59,17 @@ export async function getStaticProps() {
 
     const config = configResponse?.data?.attributes
 
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
+
     return {
         props: {
             config,
             data: dataResponse?.data,
             categories: dataCategories?.data,
-            tags: tagResponse?.data
+            tags: tagResponse?.data,
+            navbar: navbarResponse?.data?.attributes?.items
         },
         revalidate: globalConfig.revalidateTime,
     }

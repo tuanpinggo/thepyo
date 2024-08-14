@@ -8,9 +8,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
 import Link from "next/link";
 
-export default function ContactUs({config}) {
+export default function ContactUs({config,navbar}) {
     return (
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title="Liên hệ The Pyo"
                 description="The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm. Với đội ngũ chuyên gia hàng đầu và công nghệ hiện đại, The Pyo cam kết mang lại vẻ đẹp hoàn hảo"
@@ -90,10 +90,15 @@ export async function getStaticProps() {
     const configResponse = await getConfig.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
-        config
+        config,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }

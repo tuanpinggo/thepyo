@@ -23,7 +23,7 @@ async function getSearch(keyword,setLoading,setResult){
 
 }
 
-export default function SearchPage({config}){
+export default function SearchPage({config,navbar}){
 
     const [loading,setLoading] = useState(true)
     const [result,setResult] = useState()
@@ -36,7 +36,7 @@ export default function SearchPage({config}){
     },[keyword])
 
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title={`Kết quả tìm kiếm từ khoá`}
                 description={'Đừng để sự tự ti về nhan sắc trở thành rào cản thành công. Tại The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm.'}
@@ -66,10 +66,15 @@ export async function getStaticProps() {
     const configResponse = await getConfig.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         config,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }

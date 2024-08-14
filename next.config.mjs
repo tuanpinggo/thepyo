@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost','jgoteam.com','thepyoadmin.jgoteam.com'],
+    domains: ['localhost','jgoteam.com','thepyo.vn','admin.thepyo.vn'],
   },
 };
 

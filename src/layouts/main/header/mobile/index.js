@@ -32,9 +32,9 @@ export default function HeaderMobile({data}){
                     <Logo />
 
                     <Stack spacing={2} divider={<Divider light />}>
-                        {data?.main?.map((item,key) =>
+                        {data?.map((item,key) =>
                             <Stack 
-                                onClick={() => handleClick(item.link)} 
+                                onClick={() => handleClick(item?.attributes?.url)} 
                                 key={key} 
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
@@ -42,7 +42,7 @@ export default function HeaderMobile({data}){
                                 direction={"row"}
                             >
                                 <Typography variant="body2" fontSize={14} fontWeight={500} className="navitem" textTransform={"uppercase"}>
-                                    {item.label}
+                                    {item?.attributes?.title}
                                 </Typography>
                                 <IconChevronRight size={15}/>
                             </Stack>

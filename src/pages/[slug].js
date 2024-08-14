@@ -8,12 +8,12 @@ import { globalConfig } from "@/theme/config";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function DetailPost({posts,categories,tags,config}){
+export default function DetailPost({posts,categories,tags,config,navbar}){
     
     const data = posts?.data?.[0]?.attributes
 
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo 
                 title={data?.seo?.title || data?.title}
                 description={data?.seo?.description || data?.description}
@@ -74,13 +74,18 @@ export async function getStaticProps({ params }) {
     const configResponse = await getConfig.json()
     const dataCategories = await getCategories.json()
     const tagResponse = await getTags.json()
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         posts,
         categories: dataCategories?.data,
         tags: tagResponse?.data,
-        config: configResponse?.data?.attributes
+        config: configResponse?.data?.attributes,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime, // In seconds
     }

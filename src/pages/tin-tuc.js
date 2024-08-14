@@ -7,9 +7,9 @@ import { globalConfig } from "@/theme/config";
 import { Box, Container, Divider, Stack } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function TinTucPage({config,data, categories, tags}){
+export default function TinTucPage({config,data, categories, tags, navbar}){
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
                 title="Tin tức Mới từ The Pyo"
                 description="The Pyo, mọi khuyết điểm sẽ được hóa thành ưu điểm. Với đội ngũ chuyên gia hàng đầu và công nghệ hiện đại, The Pyo cam kết mang lại vẻ đẹp hoàn hảo"
@@ -54,13 +54,18 @@ export async function getStaticProps() {
     const tagResponse = await getTags.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         config,
         data: dataResponse?.data,
         categories: dataCategories?.data,
-        tags: tagResponse?.data
+        tags: tagResponse?.data,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }

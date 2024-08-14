@@ -6,9 +6,9 @@ import { globalConfig } from "@/theme/config";
 import { Box, Container } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function ServicePage({config,data}){
+export default function ServicePage({config,data, navbar}){
     return(
-        <MainLayout config={config}>
+        <MainLayout config={config} navbar={navbar}>
             <PyoBreakCrumbs
                 title="Dịch vụ thẩm mỹ"
             />
@@ -48,11 +48,16 @@ export async function getStaticProps() {
     const dataResponse = await getData.json()
   
     const config = configResponse?.data?.attributes
+
+    const urlNavbar = `${globalConfig.api_url}/menus/1?nested&populate=*`
+    const getNavbar = await fetch(urlNavbar)
+    const navbarResponse = await getNavbar.json()
    
     return {
       props: {
         config,
-        data: dataResponse?.data
+        data: dataResponse?.data,
+        navbar: navbarResponse?.data?.attributes?.items
       },
       revalidate: globalConfig.revalidateTime,
     }
