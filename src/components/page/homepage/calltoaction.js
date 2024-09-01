@@ -1,3 +1,4 @@
+import FormHomepage from "@/components/form/formHomepage";
 import { imageCdn } from "@/components/ui/imaWithCdn";
 import Pattern from "@/components/ui/pattern";
 import { globalConfig } from "@/theme/config";
@@ -61,6 +62,9 @@ export default function CallToAction({data}) {
                     <Box sx={{ position: 'absolute', top: '-80px', right: 'calc(100vw/3 - 60px)' }} display={{xs: "none", lg: "block"}}>
                         <Pattern />
                     </Box>
+                </Box>
+                <Box bgcolor={"primary.main"} borderRadius={2} p={3} mt={4}>
+                    <FormHomepage />
                 </Box>
             </Container>
         </Box>

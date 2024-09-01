@@ -17,6 +17,7 @@ import Link from "next/link";
 import FormHomepage from "@/components/form/formHomepage";
 import { imageCdn } from "@/components/ui/imaWithCdn";
 import ButtonCallToActionMobile from "./buttonCallToActionMobile";
+import SlideItem from "./slideItem";
 
 export default function SlideSection({slides}){
 
@@ -58,32 +59,7 @@ export default function SlideSection({slides}){
                                     priority
                                 />
                             </Box>
-                            <Container 
-                                maxWidth={
-                                    matches ? globalConfig.maxWidth : "lg"
-                                }
-                            >
-                                <Stack spacing={2} position={"relative"} zIndex={2} maxWidth={ matches ? 900: 700} justifyContent={"flex-start"}>
-                                    <Typography variant="body" fontSize={{xs: 14, lg: 16}} fontWeight={200} letterSpacing={{xs: "1px", lg: "3px"}}>
-                                        {item?.attributes?.sub_title || ""}
-                                    </Typography>
-                                    <Typography variant="h2" component={"h2"} fontWeight={700} color="primary.main" fontSize={{xs: 22, lg: 30}} lineHeight={1.2} textTransform={"uppercase"}>
-                                        {item?.attributes?.title || ""}
-                                    </Typography>
-                                    <Typography fontSize={{xs: 15, lg: 16}} fontWeight={300} textAlign={"justify"}>
-                                        {item?.attributes?.content || ""}
-                                    </Typography>
-                                    <Box>
-                                        <Button 
-                                            startIcon={<IconArrowNarrowRight />}
-                                            component={Link}
-                                            href={item?.attributes?.link || "/"}
-                                        >
-                                            Xem chi tiết
-                                        </Button>
-                                    </Box>
-                                </Stack>
-                            </Container>
+                            
                         </Stack>
                     </SwiperSlide>
                 ))}
@@ -100,9 +76,17 @@ export default function SlideSection({slides}){
                 zIndex={1}
             >
                 <Container maxWidth={globalConfig.maxWidth}>
-                    <Box bgcolor={"primary.main"} borderRadius={2} p={3}>
-                        <FormHomepage />
-                    </Box>
+                    <Stack direction={"row"} alignItems={"center"} spacing={0}>
+                        <SlideItem />
+                        <SlideItem 
+                            bgcolor="#03378B"
+                        />
+                        <SlideItem />
+                        <SlideItem 
+                            bgcolor="#03378B"
+                        />
+                        <SlideItem />
+                    </Stack>
                 </Container>
             </Stack>
         </Box>

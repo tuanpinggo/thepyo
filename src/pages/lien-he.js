@@ -1,14 +1,21 @@
 import PyoBreakCrumbs from "@/components/breakcrumbs/default";
 import FormContract from "@/components/form/default";
+import FormHomepage from "@/components/form/formHomepage";
+import ContactItemPage from "@/components/page/lien-he/item";
 import DefaultSeo from "@/components/seo/init";
+import DefaultTitleSection from "@/components/ui/title";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/config";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function ContactUs({config,navbar}) {
+
+    const [tab,setTab] = useState(1)
+
     return (
         <MainLayout config={config} navbar={navbar}>
             <DefaultSeo
@@ -20,64 +27,71 @@ export default function ContactUs({config,navbar}) {
             />
             <Box component={"main"} py={{ xs: 3, lg: 8 }}>
                 <Container maxWidth={globalConfig.maxWidth}>
-                    <Grid container spacing={{xs: 3, lg: 8}}>
-                        <Grid xs={12} lg={6} order={{xs: 2, lg: 1}}>
-                            <FormContract />
-                        </Grid>
-                        <Grid xs={12} lg={6} order={{xs: 1, lg: 2}}>
-                            <Stack spacing={2}>
-                                <Typography variant='h2' component={"h2"} fontWeight={700} fontSize={20} color={"primary.main"}>
-                                    LIÊN HỆ VỚI CHÚNG TÔI
-                                </Typography>
-                                <Typography>
-                                    {config?.description_contact}
-                                </Typography>
+                    <Stack direction={"column"} spacing={2}>
+                        <DefaultTitleSection title={"MẠNG LƯỚI CHI NHÁNH THE PYO CENTER CLINIC"} />
+                        <Typography>
+                            {config?.description_contact}
+                        </Typography>
 
-                                <Stack spacing={1}>
-                                    <Typography>
-                                        <strong>Địa chỉ :</strong> {config?.address}
-                                    </Typography>
-                                    <Typography>
-                                        <strong>Hotline :</strong> {config?.hotline}
-                                    </Typography>
-                                    <Typography>
-                                        <strong>Email : </strong> {config?.email}
-                                    </Typography>
-                                    <Typography>
-                                        <strong>Website : </strong>  {config?.website}
-                                    </Typography>
-                                </Stack>
-                                <Stack direction={"row"} alignItems={"center"} spacing={2}>
-                                    <Typography>
-                                        <strong>Social : </strong>
-                                    </Typography>
-                                    <Link href={config?.facebook}>
-                                        <IconBrandFacebook />
-                                    </Link>
-                                    <Link href={config?.twitter}>
-                                        <IconBrandTwitter />
-                                    </Link>
-                                    <Link href={config?.youtube}>
-                                        <IconBrandYoutube />
-                                    </Link>
-                                    <Link href={config?.instagram}>
-                                        <IconBrandInstagram />
-                                    </Link>
-                                </Stack>
+                        <Stack direction={"row"} spacing={2}>
+
+                            <Stack spacing={2} onClick={()=>setTab(1)} sx={{cursor: 'pointer'}}>
+                                <Typography 
+                                    fontWeight={700} 
+                                    color={tab === 1 ? "primary.main"  : "secoundary.main"}
+                                    sx={{px:3}}
+                                >
+                                    HÀ NỘI
+                                </Typography>
+                                <Divider sx={{bgcolor: tab === 1 ? "primary.main"  : "secoundary.main"}}/>
                             </Stack>
+
+                            <Stack spacing={2} onClick={()=>setTab(2)} sx={{cursor: 'pointer'}}>
+                                <Typography 
+                                    fontWeight={700} 
+                                    color={tab === 2 ? "primary.main"  : "secoundary.main"}
+                                    sx={{px:3}}
+                                >
+                                    THÀNH PHỐ HỒ CHÍ MINH
+                                </Typography>
+                                <Divider sx={{bgcolor: tab === 2 ? "primary.main"  : "secoundary.main"}}/>
+                            </Stack>
+
+                        </Stack>
+
+                        <Grid container spacing={{xs: 3, lg: 8}}>
+                            <Grid xs={12} lg={5}>
+                                {tab === 1 && <ContactItemPage 
+                                    title="THE PYO HÀ NỘI" 
+                                    address="Số 10 Vũ Phạm Hàm, Trung Hòa, Cầu Giấy, Hà Nội"
+                                    phone="0988 847 958"
+                                    email="thepyovietnam@gmail.com"
+                                />}
+                                {tab === 2 && <ContactItemPage 
+                                    title="THE PYO TP HỒ CHÍ MINH" 
+                                    address="75 Phạm Viết Chánh, TP. Hồ Chí Minh"
+                                    phone="0988 847 958"
+                                    email="thepyovietnam@gmail.com"
+                                />}
+                            </Grid>
+                            <Grid xs={12} lg={7}>
+                                <FormContract />
+                            </Grid>
                         </Grid>
-                    </Grid>
+
+                        <Box>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.38281832222!2d106.6822571!3d10.7656094!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f004207347d%3A0x24ccc872eae5bd9a!2sThe%20Pyo%20%7C%20Center%20clinic!5e0!3m2!1svi!2s!4v1722264650289!5m2!1svi!2s" 
+                                width="100%" 
+                                height="450" 
+                                loading="lazy" 
+                                style={{border: "none"}}
+                            />
+                        </Box>
+                    </Stack>
                 </Container>
             </Box>
-            <Box>
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.38281832222!2d106.6822571!3d10.7656094!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f004207347d%3A0x24ccc872eae5bd9a!2sThe%20Pyo%20%7C%20Center%20clinic!5e0!3m2!1svi!2s!4v1722264650289!5m2!1svi!2s" 
-                        width="100%" 
-                        height="450" 
-                        loading="lazy" 
-                        style={{border: "none"}}
-                    />
-                </Box>
+            
         </MainLayout>
     )
 }

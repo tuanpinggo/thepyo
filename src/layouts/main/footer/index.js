@@ -5,17 +5,19 @@ import FooterWidget from "./widget";
 import CopyRight from "./copyright";
 import Image from "next/image";
 import ButtonScroll from "./buttonScroll";
+import MainFooterSection from "./mainSection";
 
 export default function Footer({data}){
     return(
         <>
             <Box py={5} position={"relative"} bgcolor={"primary.main"} sx={{borderTop: '8px solid #103064'}} overflow={"hidden"}>
                 <Container maxWidth={globalConfig.maxWidth}>
-                    <Stack gap={6}>
-                        <Logo color="#fff" />
+                    <Stack gap={5}>
+                        <MainFooterSection data={data}/>
+                        <Divider sx={{bgcolor: '#d7e3f7'}} />
                         <FooterWidget data={data}/>
                         <Stack gap={3}>
-                            <Divider sx={{bgcolor: '#ccc'}} />
+                            <Divider sx={{bgcolor: '#d7e3f7'}} />
                             <CopyRight data={data}/>
                         </Stack>
                     </Stack>

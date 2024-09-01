@@ -6,6 +6,7 @@ import MainNav from "./mainNav";
 import SearchBox from "./search";
 import HeaderMobile from "./mobile";
 import theme from "@/theme/default";
+import CallToActionButton from "./calltoaction";
 
 export default function Header({navbar}){
     
@@ -28,13 +29,15 @@ export default function Header({navbar}){
                         />
                     </Link>
                     <MainNav data={navbar?.data}/>
+
+                    <Stack direction={"row"} spacing={2}>
                     <SearchBox />
+                    <CallToActionButton />
+                    </Stack>
 
                     <HeaderMobile data={navbar?.data}/>
 
                 </Stack>
-
-
             </Container>
         </Box>
     )

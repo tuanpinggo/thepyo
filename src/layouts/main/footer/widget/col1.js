@@ -4,20 +4,17 @@ export default function FooterWidget1({data}){
     return(
         <>
             <Typography variant="h2" component={"h2"} color="#fff" mb={3}>
-                {data?.company}
+                THE PYO HÀ NỘI
             </Typography>
             <Stack gap={1}>
                 <Typography color="#fff">
-                    <strong>Giấy phép kinh doanh :</strong> {data?.license}
+                    <strong>Địa chỉ :</strong> Số 10 Vũ Phạm Hàm, Trung Hòa, Cầu Giấy, Hà Nội
                 </Typography>
                 <Typography color="#fff">
-                    <strong>Mã số thuế :</strong> {data?.taxcode}
+                    <strong>Hotline :</strong> 0988 847 958
                 </Typography>
                 <Typography color="#fff">
-                    <strong>Cấp ngày :</strong> {data?.taxdate}
-                </Typography>
-                <Typography color="#fff">
-                    <strong>Nơi cấp :</strong> {data?.taxcom}
+                    <strong>Email :</strong>  thepyovietnam@gmail.com
                 </Typography>
             </Stack>
         </>

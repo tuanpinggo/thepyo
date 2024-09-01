@@ -32,7 +32,7 @@ export default function ServiceSection({data,services}) {
                     </Grid>
                     <Grid xs={12} lg={6} order={{xs: 1,lg:2}}>
                         <DefaultTitleSection title={data?.service_title} />
-                        <Stack spacing={2} my={2}>
+                        <Stack spacing={2} my={2} className="service-content">
                             <div dangerouslySetInnerHTML={{__html: data?.service_description_ck}} />
                         </Stack>
                         <Button

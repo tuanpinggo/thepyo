@@ -11,20 +11,17 @@ export default function PyoBreakCrumbs({
 
     const matches = useMediaQuery('(min-width:1180px)');
 
-    const colorText = matches ? "#f0f0f0" : "#333"
-    const colorH1 = matches ? "#f0f0f0" : "primary.main"
+    const colorText = "#f0f0f0"
+    const colorH1 = "#f0f0f0"
 
     return (
         <>
             <Box
-                bgcolor={{
-                    xs: "secondary.main",
-                    lg: "primary.main"
-                }}
+                bgcolor={"primary.main"}
                 position={"relative"}
                 overflow={"hidden"}
             >
-                <Container maxWidth={globalConfig.maxWidth}>
+                <Container maxWidth={globalConfig.maxWidth} sx={{position: 'relative', zIndex: 3}}>
                     <Stack
                         justifyContent={"center"}
                         alignItems={"center"}
@@ -71,6 +68,39 @@ export default function PyoBreakCrumbs({
                         alt="The Pyo Pattern"
                     />
                 </Box>
+                <Box 
+                    display={{xs: 'block', md: 'none'}}
+                    position={"absolute"}
+                    top={0}
+                    left={0}
+                    right={0}
+                    width={"100%"}
+                    height={"100%"}
+                    zIndex={1}
+                >
+                    <Image
+                        src={"/why.jpg"}
+                        width={500}
+                        height={300}
+                        alt="bg breakcrumb"
+                        style={{
+                            width:'100%',
+                            height:'100%',
+                            objectFit: 'cover'
+                        }}
+                    />
+                </Box>
+                <Box 
+                    display={{xs: 'block', md: 'none'}}
+                    position={"absolute"}
+                    top={0}
+                    left={0}
+                    right={0}
+                    width={"100%"}
+                    height={"100%"}
+                    zIndex={2}
+                    bgcolor={"rgb(0,0,0,0.7)"}
+                />
             </Box>
         </>
     )

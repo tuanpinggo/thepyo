@@ -12,10 +12,10 @@ export default function OurTeamWidget({
     return (
         <Stack p={3} bgcolor="#f2f2f2" borderRadius={2} justifyContent={"center"} alignItems={"center"} spacing={2}>
             <Stack justifyContent={"center"} alignItems={"center"} spacing={0.5} component={Link} href={link}>
-                <Typography variant="h3" component={'h3'} fontSize={22} fontWeight={700} textTransform={"uppercase"} color="primary.main">
+                <Typography variant="h3" component={'h3'} fontSize={20} fontWeight={700} textTransform={"uppercase"} color="primary.main">
                     {title}
                 </Typography>
-                <Typography fontSize={15}>{description}</Typography>
+                <Typography fontSize={15} textAlign={"center"}>{description}</Typography>
             </Stack>
             <Box className="hover-img">
                 <figure>

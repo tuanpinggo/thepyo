@@ -6,6 +6,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { imageCdn } from '../ui/imaWithCdn';
+import { useRef } from 'react';
+
+function cutText(text,maxLength){
+    if(text.length < maxLength) return text
+    return `${text.slice(0,maxLength)} ...`
+}
 
 export default function ServiceGrid({item}) {
 
@@ -15,12 +21,17 @@ export default function ServiceGrid({item}) {
         <Card className="card-service">
             <CardContent className="card-service-content">
                 <Link href={`/dich-vu-tham-my/${item?.slu}`}>
-                    <Typography component={"h2"} variant='h2' color="#fff" gutterBottom>
-                        {item?.title}
+                    <Typography 
+                        component={"h2"} 
+                        variant='h2' 
+                        color="#fff" 
+                        gutterBottom 
+                    >
+                        {cutText(item?.title, 45)}
                     </Typography>
                 </Link>
-                <Typography color="#fff" variant='body2'>
-                    {item?.description}   
+                <Typography color="#fff" variant='body2' className="service-description">
+                    {cutText(item?.description,150)}   
                 </Typography>
                 <Button 
                     variant='contained' 
